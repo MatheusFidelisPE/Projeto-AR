@@ -64,7 +64,27 @@ Isso faz com que SARSA tenha um comportamento mais conservador que o Q-Learning,
 
 Executamos o SARSA no mesmo ambiente e comparamos os resultados com o Q-Learning. O agente tende a aprender de maneira mais segura, evitando caminhos arriscados. Os gráficos revelam a diferença no padrão de aprendizado e a influência dos parâmetros ajustados no desempenho final.
 
-![image](https://github.com/user-attachments/assets/56d5bd00-4ac7-4b12-be13-24c108417950)
+Sarsa personalizado para treinar e testar
+Experimento 1: RaceTrack
+a) Alterando o LR
+![image](https://drive.google.com/file/d/1BV2i4yX62prVsticQLH6b1A6J6rQ2xbn/view?usp=drive_link)
+
+b) Alterando o EPSILON
+
+Experimento 2: Fronzen Lake
+a) Alterando o Alfa
+
+b) Alterando o EPSILON
+
+
+Experimento 3: Cliff Walking
+a) Alterando o Alfa
+
+b) Alterando o EPSILON
+
+
+Experimento 4: Taxi
+
 
 ## Expected-SARSA
 
