@@ -66,24 +66,41 @@ Executamos o SARSA no mesmo ambiente e comparamos os resultados com o Q-Learning
 
 Sarsa personalizado para treinar e testar
 Experimento 1: RaceTrack
+
 a) Alterando o LR
-![image](https://drive.google.com/file/d/1BV2i4yX62prVsticQLH6b1A6J6rQ2xbn/view?usp=drive_link)
+
+![Image](https://github.com/user-attachments/assets/f4f74c9e-530a-4221-962d-9bd14d157800)
 
 b) Alterando o EPSILON
+
+![Image](https://github.com/user-attachments/assets/9527c224-e594-46c6-bdb3-a59c7ef11440)
+
+
+
 
 Experimento 2: Fronzen Lake
+
 a) Alterando o Alfa
 
+![Image](https://github.com/user-attachments/assets/fcea98d9-84b6-4f01-91af-04b0b900d21d)
+
+
 b) Alterando o EPSILON
+
+![Image](https://github.com/user-attachments/assets/2b313868-5069-4611-9cc6-987244a5126c)
+
 
 
 Experimento 3: Cliff Walking
+
 a) Alterando o Alfa
 
 b) Alterando o EPSILON
 
 
 Experimento 4: Taxi
+
+![Image](https://github.com/user-attachments/assets/912acb9b-f941-449a-820f-95922d619a36)
 
 
 ## Expected-SARSA
