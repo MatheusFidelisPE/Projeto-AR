@@ -45,13 +45,6 @@ Isso significa que, ao atualizar Q(s, a), ele considera a melhor ação disponí
 
 O código implementa esse algoritmo e treina o agente no ambiente FrozenLake, executando 10.000 episódios e armazenando as recompensas obtidas. O método *epsilon-greedy* é utilizado para equilibrar exploração e explotação.
 
-### Resultados do Q-Learning
-
-Após o treinamento, avaliamos a Q-table e observamos uma melhora na tomada de decisão do agente. A média das recompensas nos últimos 20 episódios indica se o aprendizado foi eficaz. Os gráficos gerados mostram a evolução do desempenho do agente ao longo dos episódios, considerando as variações nos parâmetros analisados.
-
-![image](https://github.com/user-attachments/assets/4207fd32-5260-4345-91bc-c8f9d237ef1e)
-
-
 ## SARSA
 
 O **SARSA** é um algoritmo *on-policy*, o que significa que ele atualiza a Q-table considerando a próxima ação realmente escolhida pelo agente, ao invés da melhor ação teórica. Sua fórmula de atualização é:
@@ -102,18 +95,6 @@ Experimento 4: Taxi
 
 ![Image](https://github.com/user-attachments/assets/912acb9b-f941-449a-820f-95922d619a36)
 
-
-## Expected-SARSA
-
-O **Expected-SARSA** combina aspectos dos dois algoritmos anteriores. Em vez de usar a melhor ação (como no Q-Learning) ou a ação escolhida (como no SARSA), ele calcula um valor esperado com base na distribuição de probabilidades da política atual:
-
-$V(s') = \sum_{a'} \pi(a'|s') Q(s',a')$
-
-Isso resulta em uma estratégia de aprendizado mais estável, pois leva em conta todas as ações possíveis, ponderadas por suas probabilidades.
-
-### Resultados do Expected-SARSA
-
-A execução do Expected-SARSA no mesmo ambiente mostra um desempenho intermediário entre os dois algoritmos anteriores, proporcionando uma curva de aprendizado mais suave e menos sujeita a flutuações abruptas. A análise detalhada revela como os diferentes valores dos parâmetros afetam a estabilidade e a eficiência do aprendizado.
 
 ## Conclusão
 
