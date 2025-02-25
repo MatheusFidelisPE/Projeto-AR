@@ -35,11 +35,56 @@ Hiperparâmetros bem ajustados podem acelerar significativamente o tempo de trei
 O agente será treinado por um número N de episódios, durante os quais serão ajustados diversos parâmetros fundamentais, incluindo:
 - **Epsilon ( $\epsilon$ )**: Define a probabilidade de o agente explorar novas ações em vez de explorar o conhecimento adquirido.
 - **Número de passos**: Influencia o tempo de aprendizado do agente e sua capacidade de adaptação ao ambiente.
-- **Gamma ( $\gamma$ )**: Representa o fator de desconto, que define a importância das recompensas futuras.
-- **Alfa ( $\alpha$ )**: Taxa de aprendizado, que controla o impacto das novas experiências na atualização da Q-table.
 - **Taxa de aprendizado**: Regula a velocidade com que o agente aprende a partir das experiências.
 
 O objetivo principal desta investigação é compreender como pequenas variações nesses parâmetros afetam o desempenho do agente ao longo do treinamento, buscando otimizar sua performance.
+
+#### Definição dos Hiperparâmetros
+Foram selecionados três conjuntos de valores para os hiperparâmetros:
+
+1.Número de Passos (nstep): [1, 2, 4, 8, 16].
+* O valor de nstep define quantos passos à frente o algoritmo considera para atualizar a função de valor. Valores menores tendem a ser mais enviesados, enquanto valores maiores podem introduzir mais variância.
+
+2. Taxa de Aprendizado (lr): [0, 0.2, 0.4, 0.6, 0.8, 1].
+* A taxa de aprendizado controla o tamanho das atualizações na função de valor. Valores muito altos podem causar instabilidade, enquanto valores muito baixos podem tornar o aprendizado lento.
+
+3. Taxa de Exploração (epsilon): [0, 0.2, 0.4, 0.6, 0.8, 1].
+* A taxa de exploração determina a probabilidade de o agente explorar novas ações em vez de seguir a política atual. Valores mais altos incentivam mais exploração, enquanto valores mais baixos priorizam a exploração.
+
+#### Estrutura do Experimento
+O experimento foi dividido em etapas claras para garantir uma análise robusta e confiável:
+
+1. Combinação de Hiperparâmetros:
+* Para cada valor de nstep, foram testados todos os valores de lr. Por exemplo, para nstep = 1, o algoritmo foi treinado com lr = 0, depois lr = 0.2, e assim por diante, até lr = 1.
+
+2. Treinamento por Episódios:
+* Cada combinação de nstep e lr foi treinada por um número fixo de episódios. Ao final de cada treinamento, a média das últimas 100 execuções foi calculada para avaliar o desempenho do modelo. Essa métrica foi escolhida para capturar a estabilidade do aprendizado ao longo do tempo.
+
+3. Redução da Aleatoriedade:
+* Para garantir que os resultados não fossem influenciados por flutuações aleatórias, cada combinação de nstep e lr foi executada 10 vezes. A média dessas execuções foi usada como métrica final, proporcionando uma avaliação mais confiável do desempenho do algoritmo.
+
+| nstep | lr  | epsilon | Execuções |
+|-------|-----|---------|-----------|
+| 1     | 0   | 0       | 10        |
+| 1     | 0   | 0.2     | 10        |
+| 1     | 0   | 0.4     | 10        |
+| 1     | 0   | 0.6     | 10        |
+| 1     | 0   | 0.8     | 10        |
+| 1     | 0   | 1       | 10        |
+| 1     | 0.2 | 0       | 10        |
+| 1     | 0.2 | 0.2     | 10        |
+| 1     | 0.2 | 0.4     | 10        |
+| 1     | 0.2 | 0.6     | 10        |
+| 1     | 0.2 | 0.8     | 10        |
+| 1     | 0.2 | 1       | 10        |
+| ...   | ... | ...     | ...       |
+| 16    | 1   | 0       | 10        |
+| 16    | 1   | 0.2     | 10        |
+| 16    | 1   | 0.4     | 10        |
+| 16    | 1   | 0.6     | 10        |
+| 16    | 1   | 0.8     | 10        |
+| 16    | 1   | 1       | 10        |
+Tabela 1: Tabela de experimentos
 
 ### Execução e Avaliação
 
@@ -47,17 +92,8 @@ Após o treinamento, o agente executará M episódios para testar sua capacidade
 
 Para minimizar efeitos estocásticos e garantir resultados mais confiáveis, repetiremos essa execução X vezes, calculando a média das recompensas e o desvio padrão. Isso permitirá avaliar a estabilidade e a eficácia do aprendizado do agente.
 
-## Q-Learning
 
-O **Q-Learning** é um algoritmo *off-policy*, pois assume que o agente sempre escolherá a melhor ação possível no futuro, independentemente da política seguida durante o treinamento. A atualização da Q-table usa:
-
-$V(s') = \max_{a'} Q(s', a')$
-
-Isso significa que, ao atualizar Q(s, a), ele considera a melhor ação disponível no estado seguinte.
-
-O código implementa esse algoritmo e treina o agente no ambiente FrozenLake, executando 10.000 episódios e armazenando as recompensas obtidas. O método *epsilon-greedy* é utilizado para equilibrar exploração e explotação.
-
-## SARSA
+## SARSA N STEPS
 
 O **SARSA** é um algoritmo *on-policy*, o que significa que ele atualiza a Q-table considerando a próxima ação realmente escolhida pelo agente, ao invés da melhor ação teórica. Sua fórmula de atualização é:
 
