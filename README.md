@@ -1,10 +1,9 @@
 ## Introdução
+O aprendizado por reforço é uma abordagem poderosa para treinar agentes a tomarem decisões em ambientes desconhecidos. Este artigo explora o N STEP SARSA. Utilizando os ambientes *FrozenLake-v1*, *Race Track* do OpenAI Gym, analisamos como diferentes hiperparâmetros fundamentais afetam o desempenho do agente ao longo de N episódios de treinamento.
 
-O aprendizado por reforço é uma abordagem poderosa para treinar agentes a tomarem decisões em ambientes desconhecidos. Este artigo explora três algoritmos clássicos dessa abordagem: Q-Learning, SARSA e Expected-SARSA. Utilizando o ambiente *FrozenLake-v1* do OpenAI Gym, analisamos como diferentes parâmetros fundamentais afetam o desempenho do agente ao longo dos episódios de treinamento e teste.
+### Conceitos Fundamentais - O que são Hiperparâmetros?
 
-## Conceitos Fundamentais
-
-Os três algoritmos apresentados pertencem à família *Temporal-Difference Learning*, que atualiza a função de valor Q(s, a) com base em interações individuais do agente com o ambiente. A fórmula básica para atualização da tabela Q é:
+O algoritmo apresentado pertence à família *Temporal-Difference Learning*, que atualiza a função de valor Q(s, a) com base em interações individuais do agente com o ambiente. A fórmula básica para atualização da tabela Q é:
 
 $Q(s,a) \ &larr; Q(s,a) + \alpha \times (r + \gamma V(s') - Q(s,a))$
 
@@ -14,7 +13,20 @@ Onde:
 - $( r )$ é a recompensa obtida ao executar a ação $( a )$ no estado $( s )$.
 - $V(s')$ é a estimativa do valor do próximo estado $( s' )$.
 
-Cada algoritmo difere na maneira como estima \( V(s') \), afetando seu comportamento de aprendizado.
+### Por que o Estudo de Hiperparâmetros é Essencial no Aprendizado por Reforço?
+Quando falamos em algoritmos de aprendizado por reforço, como o n-step SARSA, uma das etapas mais importantes — e muitas vezes negligenciada — é o estudo de hiperparâmetros. Mas por que eles são tão cruciais para o sucesso do seu modelo? Vamos explorar um pouco mais abaixo:
+
+1. *Desempenho do Algoritmo*:
+Hiperparâmetros mal ajustados podem levar a resultados desastrosos. Por exemplo, uma taxa de aprendizado muito alta pode fazer com que o algoritmo oscile e nunca convirja para uma solução ótima. Por outro lado, uma taxa muito baixa pode tornar o aprendizado extremamente lento. O mesmo vale para o fator de desconto: se for muito baixo, o agente pode ignorar recompensas futuras importantes; se for muito alto, pode ficar preso em recompensas de curto prazo.
+
+2. *Adaptação ao Problema*:
+Cada problema de aprendizado por reforço é único. Um conjunto de hiperparâmetros que funciona bem em um ambiente pode não ser eficaz em outro. Por exemplo, em um ambiente com recompensas esparsas, uma taxa de exploração mais alta pode ser necessária para garantir que o agente descubra ações úteis. O estudo de hiperparâmetros permite ajustar o algoritmo para se adaptar ao problema específico que você está resolvendo.
+
+3. *Equilíbrio entre Exploração e Exploração*:
+Um dos desafios do aprendizado por reforço é equilibrar a exploração (tentar novas ações) e a exploração (usar o conhecimento atual). A taxa de exploração (ε) é um hiperparâmetro crítico para isso. Se for muito alta, o agente pode nunca aprender a política ótima; se for muito baixa, ele pode ficar preso em ações subótimas.
+
+4. *Eficiência e Velocidade de Convergência*:
+Hiperparâmetros bem ajustados podem acelerar significativamente o tempo de treinamento. Por exemplo, escolher um número de passos (n) adequado no n-step SARSA pode melhorar a eficiência das atualizações da função de valor, reduzindo o tempo necessário para o algoritmo convergir.
 
 ## Metodologia
 
