@@ -63,27 +63,20 @@ O experimento foi dividido em etapas claras para garantir uma análise robusta e
 3. Redução da Aleatoriedade:
 * Para garantir que os resultados não fossem influenciados por flutuações aleatórias, cada combinação de nstep e lr foi executada 10 vezes. A média dessas execuções foi usada como métrica final, proporcionando uma avaliação mais confiável do desempenho do algoritmo.
 
-| nstep | lr  | epsilon | Execuções |
-|-------|-----|---------|-----------|
-| 1     | 0   | 0       | 10        |
-| 1     | 0   | 0.2     | 10        |
-| 1     | 0   | 0.4     | 10        |
-| 1     | 0   | 0.6     | 10        |
-| 1     | 0   | 0.8     | 10        |
-| 1     | 0   | 1       | 10        |
-| 1     | 0.2 | 0       | 10        |
-| 1     | 0.2 | 0.2     | 10        |
-| 1     | 0.2 | 0.4     | 10        |
-| 1     | 0.2 | 0.6     | 10        |
-| 1     | 0.2 | 0.8     | 10        |
-| 1     | 0.2 | 1       | 10        |
-| ...   | ... | ...     | ...       |
-| 16    | 1   | 0       | 10        |
-| 16    | 1   | 0.2     | 10        |
-| 16    | 1   | 0.4     | 10        |
-| 16    | 1   | 0.6     | 10        |
-| 16    | 1   | 0.8     | 10        |
-| 16    | 1   | 1       | 10        |
+| nstep | lr  |  
+|-------|-----| 
+| 1     | 0   | 
+| 1     | 0.2   | 
+| 1     | 0.4   | 
+| 1     | 0.6   | 
+| 1     | 0.8 | 
+| ...   | ... | 
+| 16    | 0  | 
+| 16    | 0.2   | 
+| 16    | 0.4   | 
+| 16    | 0.6   | 
+| 16    | 0.8   | 
+
 Tabela 1: Tabela de experimentos
 
 ### Execução e Avaliação
