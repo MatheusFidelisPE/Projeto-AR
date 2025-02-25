@@ -22,7 +22,7 @@ Hiperparâmetros mal ajustados podem levar a resultados desastrosos. Por exemplo
 2. *Adaptação ao Problema*:
 Cada problema de aprendizado por reforço é único. Um conjunto de hiperparâmetros que funciona bem em um ambiente pode não ser eficaz em outro. Por exemplo, em um ambiente com recompensas esparsas, uma taxa de exploração mais alta pode ser necessária para garantir que o agente descubra ações úteis. O estudo de hiperparâmetros permite ajustar o algoritmo para se adaptar ao problema específico que você está resolvendo.
 
-3. *Equilíbrio entre Exploração e Exploração*:
+3. *Equilíbrio entre Exploração e Exploitação*:
 Um dos desafios do aprendizado por reforço é equilibrar a exploração (tentar novas ações) e a exploração (usar o conhecimento atual). A taxa de exploração (ε) é um hiperparâmetro crítico para isso. Se for muito alta, o agente pode nunca aprender a política ótima; se for muito baixa, ele pode ficar preso em ações subótimas.
 
 4. *Eficiência e Velocidade de Convergência*:
