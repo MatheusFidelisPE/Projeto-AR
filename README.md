@@ -99,42 +99,212 @@ Isso faz com que SARSA tenha um comportamento mais conservador que o Q-Learning,
 Executamos o SARSA no mesmo ambiente e comparamos os resultados com o Q-Learning. O agente tende a aprender de maneira mais segura, evitando caminhos arriscados. Os gráficos revelam a diferença no padrão de aprendizado e a influência dos parâmetros ajustados no desempenho final.
 
 Sarsa personalizado para treinar e testar
-Experimento 1: RaceTrack
 
-a) Alterando o LR
+# Experimentos
+
+### Experimento 1: Alterando o LR com o ambiente do *RaceTrack*
 
 ![Image](https://github.com/user-attachments/assets/f4f74c9e-530a-4221-962d-9bd14d157800)
+## 1. Taxas de aprendizado mais altas melhoram o desempenho
+   - **Aumento do retorno médio**  
+     Conforme a taxa de aprendizado (*learning rate* ou *lr*) aumenta, o retorno médio também cresce. Isso significa que o agente consegue aprender de forma mais rápida e eficiente.  
+   - **Relação com Alfa**  
+     O parâmetro Alfa, que está diretamente relacionado à taxa de aprendizado, influencia diretamente a velocidade de aprendizado. Quanto maior o valor de Alfa, mais rápido o agente converge para uma política ótima.  
+   - **Impacto no treinamento**  
+     Taxas de aprendizado mais altas permitem que o agente ajuste seus parâmetros de forma mais ágil, o que é especialmente útil em fases iniciais do treinamento.  
 
-b) Alterando o EPSILON
+---
+
+## 2. Valores mais altos de nstep resultam em melhor desempenho
+   - **Definição de nstep**  
+     O parâmetro *nstep* refere-se ao número de passos utilizados para atualizar a política de aprendizado. Valores mais altos significam que o agente considera um horizonte mais amplo de informações antes de realizar uma atualização.  
+   - **Estabilidade e eficiência**  
+     Utilizar um valor maior de *nstep* favorece a estabilidade do aprendizado, pois reduz a variância nas atualizações da política. Isso resulta em um processo de treinamento mais consistente e confiável.  
+   - **Melhoria no desempenho**  
+     Com um *nstep* maior, o agente consegue capturar relações de longo prazo entre ações e recompensas, o que leva a políticas mais robustas e eficientes.  
+
+---
+
+## 3. Diminuição da diferença entre curvas em lr alto
+   - **Estabilização das curvas**  
+     Para taxas de aprendizado (*lr*) muito altas, as curvas de desempenho tendem a se aproximar e estabilizar. Isso indica que o impacto do aumento da taxa de aprendizado diminui após um certo ponto.  
+   - **Limite prático**  
+     O efeito positivo de aumentar a taxa de aprendizado parece ter um limite prático. Após esse ponto, incrementos adicionais em *lr* não resultam em melhorias significativas no desempenho.  
+   - **Possíveis razões**  
+     Esse comportamento pode ser explicado por fatores como saturação na capacidade de aprendizado do modelo ou instabilidades causadas por taxas de aprendizado excessivamente altas. 
+---
+
+### Experimento 2: Alterando o EPSILON com o ambiente do *RaceTrack*
 
 ![Image](https://github.com/user-attachments/assets/9527c224-e594-46c6-bdb3-a59c7ef11440)
 
+## 1. Valores mais altos de Épsilon prejudicam o desempenho
+   - **Redução do retorno médio**  
+     Conforme o valor de Épsilon aumenta, o retorno médio torna-se mais negativo. Isso ocorre porque um Épsilon maior prioriza a exploração, fazendo com que o agente escolha ações aleatórias com maior frequência.  
+   - **Impacto na exploração**  
+     A exploração excessiva impede que o agente utilize efetivamente o conhecimento já adquirido, reduzindo sua capacidade de maximizar recompensas ao longo do tempo.  
+   - **Consequências**  
+     O agente acaba desperdiçando oportunidades de aproveitar ações ótimas já aprendidas, resultando em um desempenho inferior.  
 
+---
 
+## 2. N-step maior leva a melhor desempenho
+   - **Eficiência no aprendizado**  
+     Valores mais altos de *nstep* estão associados a um aprendizado mais eficiente, pois permitem que o agente considere um horizonte mais amplo de informações antes de atualizar sua política.  
+   - **Melhoria na recompensa acumulada**  
+     Com um *nstep* maior, o agente consegue capturar relações de longo prazo entre ações e recompensas, resultando em uma recompensa acumulada mais alta.  
+   - **Estabilidade do treinamento**  
+     O uso de um *nstep* maior também contribui para a estabilidade do processo de aprendizado, reduzindo a variância nas atualizações da política.  
 
-Experimento 2: Fronzen Lake
+---
 
-a) Alterando o Alfa
+## 3. Para valores baixos de Épsilon, as curvas estão mais separadas
+   - **Maior impacto do nstep**  
+     Quando o valor de Épsilon é baixo, o impacto do parâmetro *nstep* torna-se mais evidente. Isso ocorre porque a exploração reduzida permite que as diferenças na eficiência do aprendizado sejam mais visíveis.  
+   - **Separação das curvas**  
+     As curvas de desempenho para diferentes valores de *nstep* ficam mais distantes, indicando que a escolha de um *nstep* adequado é crucial quando a exploração é limitada.  
+
+---
+
+### Experimento 3: Alterando o Alfa com o ambiente do *Fronzen Lake*
 
 ![Image](https://github.com/user-attachments/assets/fcea98d9-84b6-4f01-91af-04b0b900d21d)
 
+## 1. Valores intermediários de Alfa (entre 0.4 e 0.6) são ideais
+   - **Pico do retorno médio**  
+     O retorno médio atinge seu valor máximo quando Alfa está na faixa de 0.4 a 0.6. Isso indica que essa taxa de aprendizado é a mais eficaz para o agente melhorar sua política de forma consistente.  
+   - **Equilíbrio entre aprendizado e estabilidade**  
+     Nessa faixa, o agente consegue atualizar suas ações de maneira eficiente, sem sofrer grandes oscilações ou instabilidades no processo de aprendizado.  
+   - **Resultados otimizados**  
+     A escolha de um Alfa intermediário permite um equilíbrio ideal entre explorar novas ações e aproveitar o conhecimento já adquirido.  
 
-b) Alterando o EPSILON
+---
+
+## 2. Alfa muito baixo (próximo de 0) prejudica o aprendizado
+   - **Aprendizado lento**  
+     Quando Alfa está próximo de 0, o agente demora mais para atualizar os valores das ações, resultando em um processo de aprendizado extremamente lento.  
+   - **Falta de adaptação**  
+     Com uma taxa de aprendizado muito baixa, o agente não consegue se adaptar rapidamente às mudanças no ambiente, o que prejudica sua capacidade de melhorar a política ao longo do tempo.  
+   - **Impacto negativo**  
+     O desempenho do agente fica comprometido, pois ele não consegue aproveitar as recompensas obtidas para ajustar suas ações de forma eficiente.  
+
+---
+
+## 3. Alfa muito alto (próximo de 1) pode causar instabilidade
+   - **Comportamento instável**  
+     Quando Alfa se aproxima de 1, o agente pode se tornar instável, reagindo de forma exagerada às novas recompensas e ignorando o conhecimento acumulado anteriormente.  
+   - **Oscilações no aprendizado**  
+     A alta taxa de aprendizado faz com que o agente mude sua política de maneira abrupta, resultando em grandes variações no desempenho e dificultando a convergência para uma solução ótima.  
+   - **Desperdício de aprendizado passado**  
+     O agente não consegue aproveitar efetivamente as informações já aprendidas, o que reduz sua eficiência e confiabilidade.  
+
+---
+
+## 4. Nstep menor tem vantagem no Frozen Lake
+   - **Desempenho superior**  
+     No ambiente Frozen Lake, um valor menor de *nstep* apresentou um desempenho melhor em comparação com outros ambientes mais complexos.  
+   - **Características do ambiente**  
+     O Frozen Lake é um ambiente simples e determinístico, onde um *nstep* menor permite que o agente atualize sua política de forma mais rápida e direta, sem a necessidade de considerar um horizonte amplo de informações.  
+   - **Diferença em relação a ambientes complexos**  
+     Em ambientes mais complexos, um *nstep* maior geralmente é mais eficiente, mas no Frozen Lake, a simplicidade do ambiente favorece uma abordagem mais imediatista.  
+
+---
+
+### Experimento 4: Alterando o EPSILON com o ambiente do *Fronzen Lake*
 
 ![Image](https://github.com/user-attachments/assets/2b313868-5069-4611-9cc6-987244a5126c)
 
+## 1. Compensação Exploração-Explotação
+   - **Para nstep menores (1 e 2)**  
+     Uma exploração moderada (em torno de *epsilon = 0.2*) é vantajosa. Isso permite que o agente explore o ambiente de forma eficiente, descobrindo caminhos melhores sem comprometer o aproveitamento do conhecimento já adquirido.  
+   - **Para nstep maiores (4 e 16)**  
+     A exploração excessiva se torna prejudicial. O agente se beneficia mais de uma fase inicial de exploração, seguida por uma fase de explotação, onde ele utiliza o conhecimento já aprendido para maximizar as recompensas.  
 
+---
 
-Experimento 3: Cliff Walking
+## 2. Impacto do nstep
+   - **Melhor desempenho geral**  
+     Os valores de *nstep = 1* e *nstep = 16* apresentam os melhores resultados, mas com comportamentos distintos em relação ao *epsilon*. Enquanto *nstep = 1* se beneficia de uma exploração moderada, *nstep = 16* exige um equilíbrio mais cuidadoso entre exploração e explotação.  
+   - **Pior desempenho**  
+     O valor *nstep = 8* demonstra o desempenho mais fraco, sugerindo que esse valor pode não ser adequado para o ambiente em questão.  
+   - **Escolha do nstep ideal**  
+     O valor ideal de *nstep* depende do equilíbrio entre a capacidade do agente de aprender com experiências recentes e a necessidade de considerar recompensas futuras em um horizonte mais amplo.  
 
-a) Alterando o Alfa
+---
 
-b) Alterando o EPSILON
+## 3. Convergência
+   - **Comportamento das curvas de recompensa**  
+     As curvas de recompensa mostram que o algoritmo SARSA converge para diferentes níveis de desempenho, dependendo dos hiperparâmetros configurados, como *nstep* e *epsilon*.  
+   - **Importância da escolha de hiperparâmetros**  
+     A seleção adequada de *nstep* e *epsilon* é fundamental para garantir um bom desempenho do agente. Uma combinação bem ajustada desses parâmetros permite que o algoritmo atinja um equilíbrio ideal entre exploração e explotação, maximizando as recompensas ao longo do tempo.  
 
+---
 
-Experimento 4: Taxi
+### Experimento 5: Alterando o Alfa com o ambiente do *Taxi*
 
-![Image](https://github.com/user-attachments/assets/912acb9b-f941-449a-820f-95922d619a36)
+![Image](https://github.com/user-attachments/assets/b4605edd-351e-48f0-bda0-4e94324e4f6d)
+
+## 1. Taxa de Aprendizado Alta é Fundamental
+   - **Importância de uma taxa de aprendizado elevada**  
+     No ambiente Taxi, uma taxa de aprendizado (*alfa*) alta é crucial para que o agente aprenda de maneira eficiente e rápida.  
+   - **Exigência do ambiente**  
+     O ambiente Taxi demanda um aprendizado ágil e adaptativo, onde o agente precisa ajustar suas ações rapidamente com base nas recompensas recebidas.  
+   - **Resultado prático**  
+     Taxas de aprendizado mais altas permitem que o agente atualize sua política de forma dinâmica, garantindo um desempenho melhor em um curto espaço de tempo.  
+
+---
+
+## 2. N-Step Menores São Mais Eficientes
+   - **Vantagem de nstep menores**  
+     Valores menores de *nstep* (como 1 e 2) proporcionam um aprendizado mais rápido e um desempenho ligeiramente superior no ambiente Taxi.  
+   - **Benefício de experiências recentes**  
+     Isso indica que o agente se beneficia mais ao aprender com experiências imediatas, em vez de considerar um horizonte amplo de informações.  
+   - **Eficiência no ambiente Taxi**  
+     A natureza do ambiente Taxi favorece uma abordagem mais direta, onde o foco em ações recentes é mais eficaz do que planejamentos de longo prazo.  
+
+---
+
+## 3. Convergência Rápida
+   - **Convergência para um platô de desempenho**  
+     O algoritmo SARSA converge rapidamente para um nível estável de desempenho a partir de *alfa = 0.6*.  
+   - **Simplicidade do ambiente**  
+     Esse comportamento sugere que o ambiente Taxi é relativamente simples, permitindo que o algoritmo encontre uma política ótima em um tempo razoável.  
+   - **Eficácia do algoritmo**  
+     A rápida convergência demonstra que o SARSA é adequado para ambientes como o Taxi, onde decisões rápidas e adaptativas são essenciais para o sucesso.  
+
+---
+
+### Experimento 6: Alterando o EPSILON com o ambiente do *Taxi*
+
+![Image](https://github.com/user-attachments/assets/218ec2a2-a759-4b9d-bc86-7e0bfba8a3b3)
+
+## 1. Exploração Mínima é Ideal
+   - **Melhor desempenho com baixo epsilon**  
+     No ambiente Taxi, o desempenho ótimo é alcançado com uma exploração mínima, ou seja, valores baixos de *epsilon*.  
+   - **Ambiente determinístico**  
+     Isso sugere que o ambiente Taxi é relativamente previsível e determinístico, onde o agente obtém melhores resultados ao seguir a política já aprendida, em vez de explorar ações aleatórias.  
+   - **Benefício da explotação**  
+     Com um *epsilon* baixo, o agente prioriza a explotação do conhecimento adquirido, resultando em decisões mais eficientes e consistentes.  
+
+---
+
+## 2. N-Step Menores São Mais Estáveis
+   - **Estabilidade com nstep menores**  
+     Valores menores de *nstep* (como 1, 2 e 4) demonstram um comportamento mais estável em relação à variação do *epsilon*.  
+   - **Aprendizado com experiências recentes**  
+     Isso indica que, no ambiente Taxi, o agente se beneficia mais ao aprender com experiências imediatas, em vez de considerar um horizonte amplo de informações.  
+   - **Eficiência e consistência**  
+     A estabilidade observada com *nstep* menores reforça a ideia de que o ambiente Taxi favorece uma abordagem mais direta e focada em recompensas de curto prazo.  
+
+---
+
+## 3. N-Step 16 tem comportamento diferente
+   - **Comportamento distinto do nstep 16**  
+     O valor *nstep = 16* apresenta um comportamento diferente em comparação com os valores menores. Isso pode indicar que, para passos mais longos, o agente ainda está em fase de aprendizado no início da variação do *epsilon*.  
+   - **Aprendizado em horizonte amplo**  
+     Com um *nstep* maior, o agente considera um horizonte mais amplo de informações, o que pode levar a um aprendizado mais lento e menos estável no início.  
+   - **Impacto no desempenho**  
+     Esse comportamento sugere que, no ambiente Taxi, valores maiores de *nstep* podem não ser tão eficientes quanto valores menores, especialmente em fases iniciais de exploração. 
 
 
 ## Conclusão
