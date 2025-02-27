@@ -307,11 +307,30 @@ Sarsa personalizado para treinar e testar
      Esse comportamento sugere que, no ambiente Taxi, valores maiores de *nstep* podem não ser tão eficientes quanto valores menores, especialmente em fases iniciais de exploração. 
 
 
-## Conclusão
+# Conclusão
 
-Comparando os três algoritmos, podemos destacar:
-- **Q-Learning**: Melhor desempenho a longo prazo, mas pode ser mais instável no aprendizado inicial.
-- **SARSA**: Mais conservador, resultando em trajetórias seguras, mas possivelmente menos eficientes.
-- **Expected-SARSA**: Equilíbrio entre estabilidade e desempenho, ideal para aplicações que exigem previsibilidade.
+Os experimentos realizados com os algoritmos **Q-Learning**, **SARSA** e **Expected-SARSA** em diferentes ambientes (**RaceTrack**, **Frozen Lake** e **Taxi**) evidenciaram a relevância da configuração adequada dos hiperparâmetros, como **taxa de aprendizado (Alfa)**, **fator de exploração (Épsilon)** e **nstep**, para o desempenho dos algoritmos. Abaixo, são apresentados os principais insights e conclusões:
 
-Além disso, a análise dos parâmetros fundamentais evidencia como pequenas variações podem impactar o desempenho do agente, reforçando a importância de um ajuste criterioso desses hiperparâmetros para otimizar o aprendizado.
+#### 1. **Taxa de Aprendizado (Alfa)**
+   - **Efeito Geral**: Taxas de aprendizado mais elevadas geralmente melhoram o desempenho, principalmente em ambientes que demandam decisões ágeis e adaptativas, como o **Taxi**. Contudo, valores extremamente altos (próximos de 1) podem gerar instabilidade, enquanto valores muito baixos (próximos de 0) resultam em um aprendizado lento.
+   - **Faixa Ideal**: No ambiente **Frozen Lake**, valores intermediários de Alfa (entre 0.4 e 0.6) mostraram-se mais eficazes, equilibrando aprendizado e estabilidade. Já no **Taxi**, taxas mais altas (a partir de 0.6) foram essenciais para uma convergência rápida.
+
+#### 2. **Fator de Exploração (Épsilon)**
+   - **Exploração vs. Explotação**: Valores elevados de Épsilon prejudicam o desempenho, especialmente em ambientes determinísticos como o **Taxi**, onde a exploração mínima (Épsilon baixo) é ideal. Por outro lado, em ambientes mais complexos, como o **RaceTrack**, uma exploração moderada (em torno de 0.2) pode ser vantajosa, principalmente para valores menores de nstep.
+   - **Impacto no Aprendizado**: A exploração excessiva (Épsilon alto) resulta em um retorno médio mais negativo, pois o agente prioriza ações aleatórias em vez de aproveitar o conhecimento já adquirido.
+
+#### 3. **Nstep**
+   - **Ambientes Simples vs. Complexos**: Em ambientes simples e determinísticos, como o **Frozen Lake** e o **Taxi**, valores menores de nstep (1 e 2) mostraram-se mais eficientes, permitindo um aprendizado rápido e estável. Já em ambientes mais complexos, como o **RaceTrack**, valores maiores de nstep (16) foram mais eficazes, pois permitem ao agente considerar um horizonte mais amplo de informações.
+   - **Estabilidade e Desempenho**: Valores maiores de nstep tendem a reduzir a variância nas atualizações da política, resultando em um aprendizado mais estável. No entanto, em alguns casos, como no **Taxi**, nstep maiores (16) podem levar a um aprendizado mais lento e menos estável no início.
+
+#### 4. **Comparação entre Algoritmos**
+   - **SARSA**: Demonstrou ser eficiente em ambientes como o **Taxi**, onde a convergência rápida é crucial. O algoritmo se beneficia de taxas de aprendizado altas e valores menores de nstep, especialmente em ambientes determinísticos.
+   - **Q-Learning e Expected-SARSA**: Embora não tenham sido explicitamente comparados nos experimentos, espera-se que o **Expected-SARSA** apresente um desempenho mais estável em relação ao **Q-Learning**, principalmente em ambientes estocásticos, devido à sua capacidade de reduzir a variância nas atualizações da política.
+
+#### 5. **Convergência e Estabilidade**
+   - **Convergência Rápida**: Em ambientes simples, como o **Taxi** e o **Frozen Lake**, os algoritmos convergem rapidamente para um platô de desempenho, especialmente com taxas de aprendizado adequadas e valores menores de nstep.
+   - **Estabilidade**: A estabilidade do aprendizado é influenciada pela combinação de Alfa, Épsilon e nstep. Valores intermediários de Alfa e Épsilon, juntamente com nstep adequado ao ambiente, são fundamentais para garantir um aprendizado estável e eficiente.
+
+### Considerações Finais
+Os resultados destacam a importância de ajustar os hiperparâmetros de acordo com as características do ambiente. Em ambientes simples e determinísticos, como o **Frozen Lake** e o **Taxi**, valores menores de nstep e taxas de aprendizado mais altas são ideais. Já em ambientes mais complexos, como o **RaceTrack**, valores maiores de nstep e uma exploração moderada são mais eficazes. Além disso, a escolha do algoritmo (SARSA, Q-Learning ou Expected-SARSA) deve considerar a natureza do ambiente, com o **Expected-SARSA** sendo preferível em cenários estocásticos devido à sua maior estabilidade.
+Em resumo, a otimização dos hiperparâmetros é crucial para maximizar o desempenho dos algoritmos de aprendizado por reforço, e a escolha adequada depende diretamente das características do ambiente e dos objetivos do treinamento.
