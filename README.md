@@ -49,7 +49,7 @@ Foram selecionados três conjuntos de valores para os hiperparâmetros:
 * A taxa de aprendizado controla o tamanho das atualizações na função de valor. Valores muito altos podem causar instabilidade, enquanto valores muito baixos podem tornar o aprendizado lento.
 
 3. Taxa de Exploração (epsilon): [0, 0.2, 0.4, 0.6, 0.8, 1].
-* A taxa de exploração determina a probabilidade de o agente explorar novas ações em vez de seguir a política atual. Valores mais altos incentivam mais exploração, enquanto valores mais baixos priorizam a exploração.
+* A taxa de exploração determina a probabilidade de o agente explorar novas ações em vez de seguir a política atual. Valores mais altos incentivam mais exploração, enquanto valores mais baixos evitam exploração.
 
 #### Estrutura do Experimento
 O experimento foi dividido em etapas claras para garantir uma análise robusta e confiável:
