@@ -334,3 +334,6 @@ Os experimentos realizados com os algoritmos **Q-Learning**, **SARSA** e **Expec
 ### Considerações Finais
 Os resultados destacam a importância de ajustar os hiperparâmetros de acordo com as características do ambiente. Em ambientes simples e determinísticos, como o **Frozen Lake** e o **Taxi**, valores menores de nstep e taxas de aprendizado mais altas são ideais. Já em ambientes mais complexos, como o **RaceTrack**, valores maiores de nstep e uma exploração moderada são mais eficazes. Além disso, a escolha do algoritmo (SARSA, Q-Learning ou Expected-SARSA) deve considerar a natureza do ambiente, com o **Expected-SARSA** sendo preferível em cenários estocásticos devido à sua maior estabilidade.
 Em resumo, a otimização dos hiperparâmetros é crucial para maximizar o desempenho dos algoritmos de aprendizado por reforço, e a escolha adequada depende diretamente das características do ambiente e dos objetivos do treinamento.
+
+### Link para o vídeo
+https://youtu.be/BZA6MTLRApU
