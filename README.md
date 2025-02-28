@@ -20,10 +20,10 @@ Quando falamos em algoritmos de aprendizado por reforço, como o n-step SARSA, u
 Hiperparâmetros mal ajustados podem levar a resultados desastrosos. Por exemplo, uma taxa de aprendizado muito alta pode fazer com que o algoritmo oscile e nunca convirja para uma solução ótima. Por outro lado, uma taxa muito baixa pode tornar o aprendizado extremamente lento. O mesmo vale para o fator de desconto: se for muito baixo, o agente pode ignorar recompensas futuras importantes; se for muito alto, pode ficar preso em recompensas de curto prazo.
 
 2. *Adaptação ao Problema*:
-Cada problema de aprendizado por reforço é único. Um conjunto de hiperparâmetros que funciona bem em um ambiente pode não ser eficaz em outro. Por exemplo, em um ambiente com recompensas esparsas, uma taxa de exploração mais alta pode ser necessária para garantir que o agente descubra ações úteis. O estudo de hiperparâmetros permite ajustar o algoritmo para se adaptar ao problema específico que você está resolvendo.
+Cada problema de aprendizado por reforço é único. Um conjunto de hiperparâmetros que funciona bem em um ambiente pode não ser eficaz em outro. Por exemplo, em um ambiente com recompensas esparsas, uma taxa de exploitação mais alta pode ser necessária para garantir que o agente descubra ações úteis. O estudo de hiperparâmetros permite ajustar o algoritmo para se adaptar ao problema específico que você está resolvendo.
 
 3. *Equilíbrio entre Exploração e Exploitação*:
-Um dos desafios do aprendizado por reforço é equilibrar a exploração (tentar novas ações) e a exploração (usar o conhecimento atual). A taxa de exploração (ε) é um hiperparâmetro crítico para isso. Se for muito alta, o agente pode nunca aprender a política ótima; se for muito baixa, ele pode ficar preso em ações subótimas.
+Um dos desafios do aprendizado por reforço é equilibrar a exploração (tentar novas ações) e a exploitação (usar o conhecimento atual). A taxa de exploração (ε) é um hiperparâmetro crítico para isso. Se for muito alta, o agente pode nunca aprender a política ótima; se for muito baixa, ele pode ficar preso em ações subótimas.
 
 4. *Eficiência e Velocidade de Convergência*:
 Hiperparâmetros bem ajustados podem acelerar significativamente o tempo de treinamento. Por exemplo, escolher um número de passos (n) adequado no n-step SARSA pode melhorar a eficiência das atualizações da função de valor, reduzindo o tempo necessário para o algoritmo convergir.
@@ -48,8 +48,8 @@ Foram selecionados três conjuntos de valores para os hiperparâmetros:
 2. Taxa de Aprendizado (lr): [0, 0.2, 0.4, 0.6, 0.8, 1].
 * A taxa de aprendizado controla o tamanho das atualizações na função de valor. Valores muito altos podem causar instabilidade, enquanto valores muito baixos podem tornar o aprendizado lento.
 
-3. Taxa de Exploração (epsilon): [0, 0.2, 0.4, 0.6, 0.8, 1].
-* A taxa de exploração determina a probabilidade de o agente explorar novas ações em vez de seguir a política atual. Valores mais altos incentivam mais exploração, enquanto valores mais baixos evitam exploração.
+3. Taxa de Exploitação (epsilon): [0, 0.2, 0.4, 0.6, 0.8, 1].
+* A taxa de Exploitação determina a probabilidade de o agente explorar novas ações em vez de seguir a política atual. Valores mais altos incentivam mais exploitação, enquanto valores mais baixos evitam exploitação.
 
 #### Estrutura do Experimento
 O experimento foi dividido em etapas claras para garantir uma análise robusta e confiável:
